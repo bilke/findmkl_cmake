@@ -83,7 +83,7 @@ set(FINDMKL_DEBUG_MODE 1)
 unset(MSVC)
 
 # Find MKL ROOT
-find_path(MKL_ROOT_DIR NAMES include/mkl_cblas.h PATHS $ENV{MKLROOT})
+find_path(MKL_ROOT_DIR NAMES include/mkl_cblas.h PATHS $ENV{MKLROOT} ${MKLROOT} $ENV{MKL_DIR} ${MKL_DIR})
 
 # Convert symlinks to real paths
 
@@ -91,7 +91,7 @@ get_filename_component(MKL_ROOT_DIR ${MKL_ROOT_DIR} REALPATH)
 
 if (NOT MKL_ROOT_DIR)
     if (MKL_FIND_REQUIRED)
-        message(FATAL_ERROR "Could not find MKL: please set environment variable {MKLROOT}")
+        message(FATAL_ERROR "Could not find MKL: please set environment or CMake variable MKLROOT or MKL_DIR!")
     else()
         unset(MKL_ROOT_DIR CACHE)
     endif()
