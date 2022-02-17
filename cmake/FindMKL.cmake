@@ -274,11 +274,11 @@ else()
 
             # set full path to libs
             foreach(i ${MKL_LIBS})
-                string(REGEX REPLACE " -" "-" i ${i})
-                string(REGEX REPLACE "-l([^\ ]+)" "\\1" i ${i})
-                string(REGEX REPLACE "-L.*" "" i ${i})
+                string(REGEX REPLACE " -" "-" i_mod ${i})
+                string(REGEX REPLACE "-l([^\ ]+)" "\\1" i_mod ${i_mod})
+                string(REGEX REPLACE "-L.*" "" i_mod ${i_mod})
 
-                find_library(FULLPATH_LIB ${i} PATHS "${MKL_LIBRARY_DIR}")
+                find_library(FULLPATH_LIB ${i_mod} PATHS "${MKL_LIBRARY_DIR}")
 
                 if (FULLPATH_LIB)
                     list(APPEND MKL_LIBRARIES ${FULLPATH_LIB})
