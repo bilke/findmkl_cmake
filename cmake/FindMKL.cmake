@@ -310,7 +310,7 @@ else()
     endif()
 
     include(FindPackageHandleStandardArgs)
-    find_package_handle_standard_args(MKL DEFAULT_MSG MKL_INCLUDE_DIR MKL_LIBRARIES MKL_LINK_FLAGS)
+    find_package_handle_standard_args(MKL DEFAULT_MSG MKL_INCLUDE_DIR MKL_LIBRARIES)
 
     mark_as_advanced(MKL_INCLUDE_DIR MKL_LIBRARIES MKL_DEFINITIONS MKL_ROOT_DIR MKL_LINK_FLAGS)
 endif()
