@@ -203,8 +203,12 @@ else()
         if (UNIX AND NOT APPLE AND NOT CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
             list(APPEND MKL_LINK_TOOL_COMMAND "--openmp=gomp")
         else()
-            list(APPEND MKL_LINK_TOOL_COMMAND "--threading-library=iomp5")
-            list(APPEND MKL_LINK_TOOL_COMMAND "--openmp=iomp5")
+            if(WIN32)
+                list(APPEND MKL_LINK_TOOL_COMMAND "--threading-library=tbb")
+            else()
+                list(APPEND MKL_LINK_TOOL_COMMAND "--threading-library=iomp5")
+                list(APPEND MKL_LINK_TOOL_COMMAND "--openmp=iomp5")
+            endif()
         endif()
     endif()
 
@@ -223,7 +227,9 @@ else()
     set(MKL_LIBRARY_DIR)
 
     if (WIN32)
-        set(MKL_LIBRARY_DIR "${MKL_ROOT_DIR}/lib/${MKL_LIB_DIR}/" "${MKL_ROOT_DIR}/../compiler/lib/${MKL_LIB_DIR}")
+        set(MKL_LIBRARY_DIR
+            "${MKL_ROOT_DIR}/lib/${MKL_LIB_DIR}/"
+            "${MKL_ROOT_DIR}/../../tbb/latest/lib/intel64/vc_mt")
 
         # remove unwanted break
         string(REGEX REPLACE "\n" "" MKL_LIBS ${MKL_LIBS})
