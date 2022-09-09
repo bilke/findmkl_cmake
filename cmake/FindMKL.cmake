@@ -267,8 +267,8 @@ else()
                 set(INTEL_LIB_DIR ${INTEL_LIB_DIR1})
             endif()
             set(MKL_LIBRARY_DIR ${INTEL_LIB_DIR})
-            if(EXISTS ${MKL_ROOT_DIR}/../compiler/lib/${MKL_LIB_DIR})
-                list(APPEND MKL_LIBRARY_DIR ${MKL_ROOT_DIR}/../compiler/lib/${MKL_LIB_DIR})
+            if(EXISTS ${MKL_ROOT_DIR}/../../compiler/latest/linux/compiler/lib/${MKL_LIB_DIR})
+                list(APPEND MKL_LIBRARY_DIR ${MKL_ROOT_DIR}/../../compiler/latest/linux/compiler/lib/${MKL_LIB_DIR})
             endif()
 
             # get the list of libs
